@@ -1,0 +1,15 @@
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 120,
+  "useTabs": false,
+  "tabWidth": 2,
+  "importOrder": [
+    "^@(\\w+)/(.*)$",
+    "^([@/])(.*)(?<!.less|.svg|.png|.jpg|.svga|.css)$",
+    "^([./])(.*)(?<!.less|.svg|.png|.jpg|.svga|.css)$",
+    "(\\.css|\\.less|\\.jpg|\\.png|\\.svg|\\.svga)$"
+  ],
+  "importOrderSeparation": true
+}

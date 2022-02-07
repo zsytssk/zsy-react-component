@@ -1,5 +1,8 @@
-import { ButtonTest } from "./pages/ButtonTest";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
+
+import { ButtonTest } from './pages/ButtonTest';
+
+import './style.less';
 
 function App() {
   return (
@@ -9,4 +12,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
