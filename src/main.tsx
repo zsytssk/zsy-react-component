@@ -5,6 +5,9 @@ import { ButtonTest } from './pages/ButtonTest';
 import { CheckboxTest } from './pages/CheckBoxTest';
 import { DatePickerTest } from './pages/DatePickerTest';
 import { InputTest } from './pages/InputTest';
+import { ModalTest } from './pages/ModalTest';
+import { PaginationTest } from './pages/PaginationTest';
+import { SelectListTest } from './pages/SelectListTest';
 
 import './style.less';
 
@@ -26,6 +29,9 @@ function App() {
       <CheckboxTest />
       <DatePickerTest />
       <InputTest />
+      <ModalTest />
+      <PaginationTest />
+      <SelectListTest />
     </div>
   );
 }
