@@ -2,10 +2,10 @@ import classnames from 'classnames';
 import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import SVG from 'react-inlinesvg';
 
-import { Empty } from '@ui/Empty';
-import { ListView, Props as ListViewProps } from '@ui/ListView';
-import Loading from '@ui/Loading';
-import Pagination from '@ui/Pagination';
+import { Empty } from '../Empty';
+import { ListView, Props as ListViewProps } from '../ListView';
+import Loading from '../Loading';
+import Pagination from '../Pagination';
 
 import loadingSVG from './loading.svg';
 import style from './style.module.less';

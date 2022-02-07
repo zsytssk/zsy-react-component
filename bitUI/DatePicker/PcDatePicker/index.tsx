@@ -2,10 +2,9 @@ import classnames from 'classnames';
 import dayjs from 'dayjs';
 import { useCallback, useRef, useState } from 'react';
 
-import { useClickOutside } from '@libs/utils/util';
-
 import { Props } from '../';
 import Dropdown from '../../Dropdown';
+import { useClickOutside } from '../../hooks';
 import { DatePickerPanel } from './DatePickerPanel';
 
 export default function PcDatePicker({

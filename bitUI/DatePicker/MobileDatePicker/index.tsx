@@ -1,16 +1,14 @@
 import classnames from 'classnames';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
-import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import weekday from 'dayjs/plugin/weekday';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-
-import { sleep } from '@libs/utils/snippets';
-import SelectMobile from '@ui/SelectMobile';
-import { useUITranslateTpl } from '@ui/useUITranslate';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Props } from '../';
+import SelectMobile from '../../SelectMobile';
+import { useUITranslateTpl } from '../../useUITranslate';
+import { sleep } from '../../utils';
 
 import style from './style.module.less';
 
@@ -69,7 +67,7 @@ export default function MobileDatePicker({
   }, [value, tz, visible]);
 
   useEffect(() => {
-    if (!disableDateRef.current) {
+    if (!visible) {
       return;
     }
     const yearStart = dayNow.startOf('year');
@@ -100,10 +98,10 @@ export default function MobileDatePicker({
     }
 
     setYears(years);
-  }, []);
+  }, [visible]);
 
   useEffect(() => {
-    if (!year || !disableDateRef.current) {
+    if (!year || !visible) {
       return;
     }
     const localMonths: Item[] = [];
@@ -119,10 +117,10 @@ export default function MobileDatePicker({
     }
     monthsRef.current = localMonths;
     setMonths(localMonths);
-  }, [year]);
+  }, [year, visible]);
 
   useEffect(() => {
-    if (!month || !disableDateRef.current) {
+    if (!month || !visible) {
       return;
     }
     const daysInMonth = month.daysInMonth();
@@ -142,7 +140,7 @@ export default function MobileDatePicker({
     }
     daysRef.current = dayArr;
     setDays(dayArr);
-  }, [month]);
+  }, [month, visible]);
 
   const onMultiUpdate = useCallback(
     async (val: dayjs.Dayjs, index: number) => {
@@ -151,6 +149,7 @@ export default function MobileDatePicker({
           return;
         }
         setYear(val);
+
         // 等待months设置好了之后再重新设置 month， 下面day类似
         await sleep(0);
         if (monthsRef.current?.[0].value) {

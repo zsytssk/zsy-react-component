@@ -1,50 +1,50 @@
-import { Configuration } from "webpack";
+import { Configuration } from 'webpack';
 
 export const fileLoader = {
   test: /\.(png|jpg|svg|gif)$/,
   exclude: /node_modules/,
-  use: ["file-loader"],
+  use: ['file-loader'],
 };
 
-export const lessLoaderFn = (mode: Configuration["mode"]) => {
+export const lessLoaderFn = (mode: Configuration['mode']) => {
   return {
     test: /(\.css|\.less)$/,
     use: [
-      "style-loader",
+      'style-loader',
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
-          sourceMap: mode === "development",
-          modules: true,
+          sourceMap: mode === 'development',
+          modules: { auto: true },
         },
       },
       {
-        loader: "postcss-loader",
+        loader: 'postcss-loader',
         options: {
           postcssOptions: {
             /* eslint-disable-next-line */
-            plugins: [require("autoprefixer")()],
+            plugins: [require('autoprefixer')()],
           },
         },
       },
       {
-        loader: "less-loader",
+        loader: 'less-loader',
         options: {
-          sourceMap: mode === "development",
+          sourceMap: mode === 'development',
         },
       },
     ],
   };
 };
-export const cssLoaderFn = (mode: Configuration["mode"]) => {
+export const cssLoaderFn = (mode: Configuration['mode']) => {
   return {
     test: /(\.css)$/,
     use: [
-      "style-loader",
+      'style-loader',
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
-          sourceMap: mode === "development",
+          sourceMap: mode === 'development',
           modules: false,
         },
       },
@@ -52,13 +52,13 @@ export const cssLoaderFn = (mode: Configuration["mode"]) => {
   };
 };
 
-export const tsLoaderFn = (mode: Configuration["mode"]) => {
+export const tsLoaderFn = (mode: Configuration['mode']) => {
   const default_config = {
     test: /(\.ts|\.tsx|\.jsx|\.js)$/,
     exclude: [/\bnode_modules\b/],
     use: [
       {
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
     ],
   } as any;

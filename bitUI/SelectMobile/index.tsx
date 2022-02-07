@@ -1,20 +1,13 @@
-import classnames from "classnames";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import SVG from "react-inlinesvg";
+import classnames from 'classnames';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import SVG from 'react-inlinesvg';
 
-import Modal from "../Modal";
-import { useUITranslateTpl } from "../useUITranslate";
+import Modal from '../Modal';
+import { useUITranslateTpl } from '../useUITranslate';
+import { selectMobilePxToRem } from './utils';
 
-import { selectMobilePxToRem } from "./utils";
-
-import closeIcon from "./close.svg";
-import style from "./style.module.less";
+import closeIcon from './close.svg';
+import style from './style.module.less';
 
 export type Item<T> = {
   label: string | number;
@@ -56,7 +49,7 @@ export default function SelectMobile<T>({
   bottomRender,
 }: Props<T>) {
   const tpl = useUITranslateTpl();
-  confirmTxt = confirmTxt || tpl("confirm");
+  confirmTxt = confirmTxt || tpl('confirm');
 
   const [localValue, setLocalValue] = useState<T>();
   const [localMultiValue, setLocalMulValue] = useState<T[]>([]);
@@ -87,7 +80,7 @@ export default function SelectMobile<T>({
         setLocalMulValue([...localMultiValue]);
       }
     },
-    [localMultiValue]
+    [localMultiValue],
   );
 
   const setLocalValueUpdate = useCallback((val: T, item: any) => {
@@ -118,12 +111,7 @@ export default function SelectMobile<T>({
   }
 
   return (
-    <Modal
-      visible={visible}
-      onCancel={onClose}
-      className={style.selectModalWrap}
-      transClass="bottom_slide_up"
-    >
+    <Modal visible={visible} onCancel={onClose} className={style.selectModalWrap} transClass="bottom_slide_up">
       <div
         className={classnames({
           selectModal: true,
@@ -189,26 +177,20 @@ export default function SelectMobile<T>({
 }
 
 type ListProps<T> = {
+  test?: boolean;
   visible?: boolean;
   value?: T;
   data?: Item<T>[];
-  onChange: Props<T>["onChange"];
-  itemRender?: Props<T>["itemRender"];
+  onChange: Props<T>['onChange'];
+  itemRender?: Props<T>['itemRender'];
   isEqual?: (value: T, item: T) => boolean;
 };
 type Pos = {
   x: number;
   y: number;
 };
-type Status = "normal" | "start" | "move" | "end";
-function List<T>({
-  value,
-  data,
-  onChange,
-  itemRender,
-  isEqual,
-  visible,
-}: ListProps<T>) {
+type Status = 'normal' | 'start' | 'move' | 'end';
+function List<T>({ test, value, data, onChange, itemRender, isEqual, visible }: ListProps<T>) {
   const [curIndex, setCurIndex] = useState(-1);
   const ref = useRef<HTMLUListElement>(null);
   const onChangeRef = useRef<(index: number) => void>();
@@ -243,7 +225,7 @@ function List<T>({
     const dom = ref.current;
 
     let endMove = 0;
-    let status: Status = "normal";
+    let status: Status = 'normal';
     let dist = 0;
     let lastPos = {} as Pos;
 
@@ -253,30 +235,30 @@ function List<T>({
 
     const moveDom = (n: number, ani = false) => {
       if (ani) {
-        dom.classList.add("ani");
+        dom.classList.add('ani');
         dom.addEventListener(
-          "animationend",
+          'animationend',
           () => {
-            dom.classList.remove("ani");
+            dom.classList.remove('ani');
           },
-          false
+          false,
         );
       }
       const val = selectMobilePxToRem(n);
-      dom.setAttribute("style", `transform: translateY(${val})`);
+      dom.setAttribute('style', `transform: translateY(${val})`);
     };
     const start = (e: TouchEvent | MouseEvent) => {
       e.preventDefault();
       const pos = getEventPosInDom(e);
       lastPos = pos;
-      status = "start";
+      status = 'start';
     };
     const move = (e: TouchEvent | MouseEvent) => {
-      if (status !== "start" && status !== "move") {
+      if (status !== 'start' && status !== 'move') {
         return;
       }
       e.preventDefault();
-      status = "move";
+      status = 'move';
       const newPos = getEventPosInDom(e);
       const distPos = {
         x: newPos.x - lastPos.x,
@@ -295,11 +277,11 @@ function List<T>({
     };
 
     const end = () => {
-      if (status !== "move") {
+      if (status !== 'move') {
         return;
       }
       calcCurIndex(dist + endMove);
-      status = "end";
+      status = 'end';
       dist = 0;
       lastPos = {} as Pos;
     };
@@ -366,25 +348,25 @@ function List<T>({
       moveDom(endMove, ani);
     };
 
-    dom.addEventListener("touchstart", start, { passive: false });
-    dom.addEventListener("mousedown", start, { passive: false });
-    document.body.addEventListener("touchmove", move, { passive: false });
-    document.body.addEventListener("mousemove", move, { passive: false });
-    document.body.addEventListener("touchend", end, { passive: false });
-    document.body.addEventListener("mouseup", end, { passive: false });
-    document.body.addEventListener("touchcancel", end, { passive: false });
+    dom.addEventListener('touchstart', start, { passive: false });
+    dom.addEventListener('mousedown', start, { passive: false });
+    document.body.addEventListener('touchmove', move, { passive: false });
+    document.body.addEventListener('mousemove', move, { passive: false });
+    document.body.addEventListener('touchend', end, { passive: false });
+    document.body.addEventListener('mouseup', end, { passive: false });
+    document.body.addEventListener('touchcancel', end, { passive: false });
 
     setTimeout(() => {
       moveToIndex(index as number);
     });
     return () => {
-      dom.removeEventListener("touchstart", start);
-      dom.removeEventListener("mousedown", start);
-      document.body.removeEventListener("touchmove", move);
-      document.body.removeEventListener("mousemove", move);
-      document.body.removeEventListener("mouseup", end);
-      document.body.removeEventListener("touchend", end);
-      document.body.removeEventListener("touchcancel", end);
+      dom.removeEventListener('touchstart', start);
+      dom.removeEventListener('mousedown', start);
+      document.body.removeEventListener('touchmove', move);
+      document.body.removeEventListener('mousemove', move);
+      document.body.removeEventListener('mouseup', end);
+      document.body.removeEventListener('touchend', end);
+      document.body.removeEventListener('touchcancel', end);
     };
   }, [index, data, visible]);
 
@@ -398,16 +380,12 @@ function List<T>({
         return (
           <li
             key={_index}
-            className={classnames("item", {
+            className={classnames('item', {
               cur: curIndex === _index,
               selected: index === _index,
             })}
           >
-            {itemRender ? (
-              itemRender(item, _index)
-            ) : (
-              <div className="inner">{item.label}</div>
-            )}
+            {itemRender ? itemRender(item, _index) : <div className="inner">{item.label}</div>}
           </li>
         );
       })}
@@ -419,8 +397,7 @@ function getEventPosInDom(event: TouchEvent | MouseEvent): {
   x: number;
   y: number;
 } {
-  const myLocation =
-    (event as TouchEvent)?.changedTouches?.[0] || (event as MouseEvent);
+  const myLocation = (event as TouchEvent)?.changedTouches?.[0] || (event as MouseEvent);
   return {
     x: myLocation.clientX,
     y: myLocation.clientY,

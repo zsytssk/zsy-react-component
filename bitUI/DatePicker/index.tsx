@@ -1,27 +1,24 @@
-import { Locale } from "dayjs/locale/*";
-import EnLocale from "dayjs/locale/en";
-import JaLocale from "dayjs/locale/ja";
-import KoLocale from "dayjs/locale/ko";
-import TrLocale from "dayjs/locale/tr";
-import ViLocale from "dayjs/locale/vi";
-import ZhLocale from "dayjs/locale/zh-cn";
-import TwLocale from "dayjs/locale/zh-tw";
-import { useMemo } from "react";
+import { Locale } from 'dayjs/locale/*';
+import EnLocale from 'dayjs/locale/en';
+import JaLocale from 'dayjs/locale/ja';
+import KoLocale from 'dayjs/locale/ko';
+import TrLocale from 'dayjs/locale/tr';
+import ViLocale from 'dayjs/locale/vi';
+import ZhLocale from 'dayjs/locale/zh-cn';
+import TwLocale from 'dayjs/locale/zh-tw';
+import { useMemo } from 'react';
 
-import MobileDatePicker from "./MobileDatePicker";
-import PcDatePicker from "./PcDatePicker";
+import MobileDatePicker from './MobileDatePicker';
+import PcDatePicker from './PcDatePicker';
 
 export type Props = {
   locale?: Locale;
-  tz?: string;
+  tz?: number;
   value?: number;
   isMobile: boolean;
   onChange: (current: number) => void;
   disabledDate?: (current: number) => boolean;
-  customRender?: (
-    current: number,
-    visible: boolean
-  ) => React.ReactNode | React.ReactNode[];
+  customRender?: (current: number, visible: boolean) => React.ReactNode | React.ReactNode[];
   dropClassName?: string;
   className?: string;
   getPopupContainer?: (triggerNode: HTMLElement | null) => HTMLElement | null;
@@ -39,26 +36,26 @@ export default function DatePicker({
   title,
   customRender,
   getPopupContainer,
-  tz,
-  lang = "zh-Hans",
+  tz = 0,
+  lang = 'zh-Hans',
 }: Props) {
   const locale = useMemo(() => {
-    if (lang === "zh-Hans") {
+    if (lang === 'zh-Hans') {
       return ZhLocale;
     }
-    if (lang === "zh-Hant") {
+    if (lang === 'zh-Hant') {
       return TwLocale;
     }
-    if (lang === "vi") {
+    if (lang === 'vi') {
       return ViLocale;
     }
-    if (lang === "ko") {
+    if (lang === 'ko') {
       return KoLocale;
     }
-    if (lang === "ja") {
+    if (lang === 'ja') {
       return JaLocale;
     }
-    if (lang === "tr") {
+    if (lang === 'tr') {
       return TrLocale;
     }
 

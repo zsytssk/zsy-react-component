@@ -2,10 +2,9 @@ import classnames from 'classnames';
 import dayjs from 'dayjs';
 import { Locale } from 'dayjs/locale/*';
 import localeData from 'dayjs/plugin/localeData';
-import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import weekday from 'dayjs/plugin/weekday';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { MonthView } from './MonthView';
 

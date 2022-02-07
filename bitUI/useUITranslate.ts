@@ -1,15 +1,13 @@
 import { useCallback } from 'react';
 
-import { useLang } from '@libs/utils/hooks';
-
 export function useUITranslate() {
-  const lang = useLang();
+  const lang = 'zh-Hant';
   return translate[lang as keyof typeof translate];
 }
 
 type Data = { [key: string]: string };
 export function useUITranslateTpl() {
-  const lang = useLang();
+  const lang = 'zh-Hant';
   const langObj = translate[lang as keyof typeof translate];
   return useCallback(
     (key: keyof typeof translate['en'], data?: Data) => {

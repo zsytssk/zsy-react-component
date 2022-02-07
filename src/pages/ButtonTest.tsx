@@ -16,7 +16,7 @@ ReactDOM.render(
 export function ButtonTest() {
   return (
     <div className="code-box">
-      <h1>Button</h1>
+      <h1>Button 按钮</h1>
       <div className="code-box-demo">
         <Button>Button</Button>
         <Button loading={true}>test</Button>
