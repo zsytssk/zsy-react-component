@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { ButtonTest } from './pages/ButtonTest';
 import { CheckboxTest } from './pages/CheckBoxTest';
 import { DatePickerTest } from './pages/DatePickerTest';
+import { InputTest } from './pages/InputTest';
 
 import './style.less';
 
@@ -24,6 +25,7 @@ function App() {
       <ButtonTest />
       <CheckboxTest />
       <DatePickerTest />
+      <InputTest />
     </div>
   );
 }

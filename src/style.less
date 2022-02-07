@@ -15,4 +15,28 @@ body {
   .code-box-line {
     margin-bottom: 10px;
   }
+  .bit-input {
+    margin: 0 10px 10px 0;
+    display: inline-flex;
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 0 0 0 10px;
+    border-radius: 5px;
+    input {
+      border: none;
+      outline: none;
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        caret-color: #fff;
+        transition: background-color 999999s ease-in-out 0s;
+      }
+    }
+    .eye {
+      color: #666;
+      height: 80%;
+      height: auto;
+    }
+  }
 }
