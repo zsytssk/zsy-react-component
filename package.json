@@ -1,32 +1,54 @@
 {
-  "name": "bitUI",
+  "name": "react-clean",
   "version": "1.0.0",
-  "description": "自己写的一个 react 组件，比较小比较精简，使用方式和 antd 类似.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zsytssk/bitUI.git"
+    "start": "cross-env TS_NODE_PROJECT=scripts/tsconfig.json webpack serve --mode=development --config ./scripts/webpack/webpack.config.ts",
+    "build": "cross-env TS_NODE_PROJECT=scripts/tsconfig.json webpack  --mode=production --config ./scripts/webpack/webpack.config.ts",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zsytssk/bitUI/issues"
-  },
-  "homepage": "https://github.com/zsytssk/bitUI#readme",
   "dependencies": {
-    "classnames": "^2.3.1",
-    "dayjs": "^1.10.7",
-    "rc-switch": "^3.2.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-inlinesvg": "^2.3.0",
-    "react-transition-group": "^4.4.2"
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "classnames": "^2.2.6",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.4",
+    "less": "^3.11.3",
+    "postcss-loader": "^6.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-inlinesvg": "^2.2.2",
+    "react-redux": "^7.2.0",
+    "react-transition-group": "^4.4.1",
+    "redux": "^4.0.5",
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
-    "@types/react": "^17.0.39"
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@babel/runtime-corejs3": "^7.16.3",
+    "@trivago/prettier-plugin-sort-imports": "^3.1.1",
+    "@types/react": "^16.9.36",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@webpack-cli/serve": "^1.6.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "less-loader": "^6.1.0",
+    "style-loader": "^1.2.1",
+    "ts-node": "^8.10.2",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
