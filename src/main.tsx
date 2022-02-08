@@ -8,6 +8,7 @@ import { InputTest } from './pages/InputTest';
 import { ModalTest } from './pages/ModalTest';
 import { PaginationTest } from './pages/PaginationTest';
 import { SelectListTest } from './pages/SelectListTest';
+import { TooltipTest } from './pages/TooltipTest';
 
 import './style.less';
 
@@ -32,6 +33,7 @@ function App() {
       <ModalTest />
       <PaginationTest />
       <SelectListTest />
+      <TooltipTest />
     </div>
   );
 }

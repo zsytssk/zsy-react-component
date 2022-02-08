@@ -4,12 +4,38 @@ import { atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import SelectList from '@bitUI/SelectList';
 
-const code = `import { Checkbox } from '@bitUI/Checkbox';
+const code = `import SelectList from '@bitUI/SelectList';
 
 ReactDOM.render(
   <>
-  <Input />
-  <Input type={'password'} />
+  <div className="code-box-line">
+    pc:
+    <SelectList
+      className="select-list-demo"
+      isMobile={false}
+      dataSource={data}
+      value={val}
+      onChange={(val) => {
+        setVal(val);
+      }}
+    >
+      {data.find((item) => item.value === val)?.label}
+    </SelectList>
+  </div>
+  <div className="code-box-line">
+    h5:
+    <SelectList
+      className="select-list-demo"
+      isMobile={true}
+      dataSource={data}
+      value={val1}
+      onChange={(val) => {
+        setVal1(val);
+      }}
+    >
+      {data.find((item) => item.value === val1)?.label}
+    </SelectList>
+  </div>
   </>,
   mountNode,
 );`;
@@ -33,20 +59,40 @@ export function SelectListTest() {
   }, []);
 
   const [val, setVal] = useState<string>(data[0].value);
+  const [val1, setVal1] = useState<string>(data[0].value);
 
   return (
     <div className="code-box">
       <h1>selectList 选择框</h1>
       <div className="code-box-demo">
-        <SelectList
-          isMobile={true}
-          dataSource={data}
-          onChange={(val) => {
-            setVal(val);
-          }}
-        >
-          {data.find((item) => item.value === val)?.label}
-        </SelectList>
+        <div className="code-box-line">
+          pc:
+          <SelectList
+            className="select-list-demo"
+            isMobile={false}
+            dataSource={data}
+            value={val}
+            onChange={(val) => {
+              setVal(val);
+            }}
+          >
+            {data.find((item) => item.value === val)?.label}
+          </SelectList>
+        </div>
+        <div className="code-box-line">
+          h5:
+          <SelectList
+            className="select-list-demo"
+            isMobile={true}
+            dataSource={data}
+            value={val1}
+            onChange={(val) => {
+              setVal1(val);
+            }}
+          >
+            {data.find((item) => item.value === val1)?.label}
+          </SelectList>
+        </div>
       </div>
 
       <SyntaxHighlighter language="typescript" style={atomOneLight}>
